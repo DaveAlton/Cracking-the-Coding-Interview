@@ -1,11 +1,11 @@
 // Implement an algorithm to determine if a string as all unique characters.
 func isUnique(string: String) -> Bool {
-    var memo = [Character]()
-    for char in string.characters { // O(N)
-        if memo.contains(char) {    // O(N) (This makes it O(N^2))
+    var memo = [Character: Bool]()
+    for char in string.characters { // O(N) <- This is the final speed result
+        if memo[char] == true {     // O(1)
             return false
         } else {
-            memo.append(char)
+            memo[char] = true
         }
     }
     return true
@@ -29,14 +29,18 @@ isUnique(string: "a")
 // What if you cannot use additional data structures?
 // Ok, I cheated a little on this one. In anticipation of Swift 4, 
 // I created a character array much like how strings can be used in the future.
+import Foundation
+
 func isUniqueNoDataStructures(string: String) -> Bool {
-    let charArray = string.characters.flatMap { $0 }      // O(N)
-    for a in charArray.enumerated() {                     // O(N)
-        for bIndex in (a.offset + 1)..<charArray.count {  // O(N) (This makes it O(N^2))
-            if a.element == charArray[bIndex] {
+    var previous: Character?                          // Space is O(1)
+    let sortedCharacters = string.characters.sorted() // O(logN)
+    for char in sortedCharacters {                    // O(N) <- This is the final speed result
+        if let previous = previous {
+            if previous == char {
                 return false
             }
         }
+        previous = char
     }
     return true
 }
