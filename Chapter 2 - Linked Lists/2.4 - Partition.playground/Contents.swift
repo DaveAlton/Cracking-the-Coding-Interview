@@ -9,11 +9,11 @@
 // Output: 3->1->2->10->5->5->8
 
 class Node: Equatable {
-    var id: Int
+    var value: Int
     var next: Node?
     
-    init(id: Int, next: Node? = nil) {
-        self.id = id
+    init(value: Int, next: Node? = nil) {
+        self.value = value
         self.next = next
     }
     
@@ -21,7 +21,7 @@ class Node: Equatable {
         var currentNode: Node? = self
         var nodeString = ""
         while currentNode != nil {
-            nodeString += "\(currentNode!.id)"
+            nodeString += "\(currentNode!.value)"
             currentNode = currentNode!.next
             if currentNode == self {
                 break
@@ -43,7 +43,7 @@ func partition(head: Node, partition: Int) -> Node {
     var rightPartitionHead: Node?
     var rightPartition: Node?
     while node != nil {
-        if node!.id < partition {
+        if node!.value < partition {
             if leftPartition != nil {
                 leftPartition?.next = node
                 leftPartition = node
@@ -76,26 +76,26 @@ func partition(head: Node, partition: Int) -> Node {
 }
 
 // 01229
-var head = Node(id: 0, next: Node(id: 1, next: Node(id: 9, next: Node(id: 2, next: Node(id: 2)))))
+var head = Node(value: 0, next: Node(value: 1, next: Node(value: 9, next: Node(value: 2, next: Node(value: 2)))))
 partition(head: head, partition: 3).printNodes()
 
 // 32158510
-head = Node(id: 3, next: Node(id: 5, next: Node(id: 8, next: Node(id: 5, next: Node(id: 10, next: Node(id: 2, next: Node(id: 1)))))))
+head = Node(value: 3, next: Node(value: 5, next: Node(value: 8, next: Node(value: 5, next: Node(value: 10, next: Node(value: 2, next: Node(value: 1)))))))
 partition(head: head, partition: 5).printNodes()
 
 // 0122
-head = Node(id: 0, next: Node(id: 1, next: Node(id: 2, next: Node(id: 2))))
+head = Node(value: 0, next: Node(value: 1, next: Node(value: 2, next: Node(value: 2))))
 partition(head: head, partition: 1).printNodes()
 
 // 0000
-head = Node(id: 0, next: Node(id: 0, next: Node(id: 0, next: Node(id: 0, next: Node(id: 0)))))
+head = Node(value: 0, next: Node(value: 0, next: Node(value: 0, next: Node(value: 0, next: Node(value: 0)))))
 partition(head: head, partition: 0).printNodes()
 
 // 0
-head = Node(id: 0)
+head = Node(value: 0)
 partition(head: head, partition: 0).printNodes()
 
 // 0
-head = Node(id: 0)
+head = Node(value: 0)
 head.next = head
 partition(head: head, partition: 0).printNodes()

@@ -1,11 +1,11 @@
 // Implement an algorithm to find the Kth to last element of a singly linked list.
 
 class Node: Equatable {
-    var id: Int
+    var value: Int
     var next: Node?
     
-    init(id: Int, next: Node? = nil) {
-        self.id = id
+    init(value: Int, next: Node? = nil) {
+        self.value = value
         self.next = next
     }
     
@@ -13,7 +13,7 @@ class Node: Equatable {
         var currentNode: Node? = self
         var nodeString = ""
         while currentNode != nil {
-            nodeString += "\(currentNode!.id)"
+            nodeString += "\(currentNode!.value)"
             currentNode = currentNode!.next
             if currentNode == self {
                 break
@@ -52,22 +52,22 @@ func returnElementOf(head: Node, withRemaining k: Int) -> Node? {
 }
 
 // 2
-var head = Node(id: 0, next: Node(id: 1, next: Node(id: 1, next: Node(id: 2, next: Node(id: 2)))))
-returnElementOf(head: head, withRemaining: 2)?.id
+var head = Node(value: 0, next: Node(value: 1, next: Node(value: 1, next: Node(value: 2, next: Node(value: 2)))))
+returnElementOf(head: head, withRemaining: 2)?.value
 
 // 2
-head = Node(id: 0, next: Node(id: 1, next: Node(id: 2, next: Node(id: 2, next: Node(id: 1)))))
-returnElementOf(head: head, withRemaining: -1)?.id
+head = Node(value: 0, next: Node(value: 1, next: Node(value: 2, next: Node(value: 2, next: Node(value: 1)))))
+returnElementOf(head: head, withRemaining: -1)?.value
 
 // 0
-head = Node(id: 0, next: Node(id: 0, next: Node(id: 0, next: Node(id: 0, next: Node(id: 0)))))
-returnElementOf(head: head, withRemaining: 2)?.id
+head = Node(value: 0, next: Node(value: 0, next: Node(value: 0, next: Node(value: 0, next: Node(value: 0)))))
+returnElementOf(head: head, withRemaining: 2)?.value
 
 // nil
-head = Node(id: 0)
-returnElementOf(head: head, withRemaining: 16)?.id
+head = Node(value: 0)
+returnElementOf(head: head, withRemaining: 16)?.value
 
 // 0
-head = Node(id: 0)
+head = Node(value: 0)
 head.next = head
-returnElementOf(head: head, withRemaining: 0)?.id
+returnElementOf(head: head, withRemaining: 0)?.value

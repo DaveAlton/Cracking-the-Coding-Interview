@@ -7,11 +7,11 @@
 // Output: 2->1->9. That is 912
 
 class Node: Equatable {
-    var id: Int
+    var value: Int
     var next: Node?
     
-    init(id: Int, next: Node? = nil) {
-        self.id = id
+    init(value: Int, next: Node? = nil) {
+        self.value = value
         self.next = next
     }
     
@@ -19,7 +19,7 @@ class Node: Equatable {
         var currentNode: Node? = self
         var nodeString = ""
         while currentNode != nil {
-            nodeString += "\(currentNode!.id)"
+            nodeString += "\(currentNode!.value)"
             currentNode = currentNode!.next
             if currentNode == self {
                 break
@@ -47,7 +47,7 @@ func listAsNumber(head: Node) -> Int {
     
     while node != nil {
         number /= 10
-        number += Double(node!.id)
+        number += Double(node!.value)
         multiplier *= 10
         
         node = node?.next
@@ -59,17 +59,17 @@ func listAsNumber(head: Node) -> Int {
 }
 
 func numberAsList(number: Int) -> Node? {
-    guard number > 0 else { return Node(id: 0) }
+    guard number > 0 else { return Node(value: 0) }
     var head: Node?
     var currentNode: Node?
     var remainder = number
     while remainder > 0 {
         let lastDigit = Int(Double(remainder).truncatingRemainder(dividingBy: 10))
         if currentNode == nil {
-            head = Node(id: lastDigit)
+            head = Node(value: lastDigit)
             currentNode = head
         } else {
-            currentNode?.next = Node(id: lastDigit)
+            currentNode?.next = Node(value: lastDigit)
             currentNode = currentNode?.next
         }
         remainder = (remainder - lastDigit)/10
@@ -78,16 +78,16 @@ func numberAsList(number: Int) -> Node? {
 }
 
 // 22910 + 89 = 22999 -> (9->9->9->2->2)
-var l1 = Node(id: 0, next: Node(id: 1, next: Node(id: 9, next: Node(id: 2, next: Node(id: 2)))))
-var l2 = Node(id: 9, next: Node(id: 8))
+var l1 = Node(value: 0, next: Node(value: 1, next: Node(value: 9, next: Node(value: 2, next: Node(value: 2)))))
+var l2 = Node(value: 9, next: Node(value: 8))
 sumLists(l1: l1, l2: l2)?.printNodes()
 
 // 1215853 + 89 = 1215942 -> (2->4->9->5->1->2->1)
-l1 = Node(id: 3, next: Node(id: 5, next: Node(id: 8, next: Node(id: 5, next: Node(id: 1, next: Node(id: 2, next: Node(id: 1)))))))
-l2 = Node(id: 9, next: Node(id: 8))
+l1 = Node(value: 3, next: Node(value: 5, next: Node(value: 8, next: Node(value: 5, next: Node(value: 1, next: Node(value: 2, next: Node(value: 1)))))))
+l2 = Node(value: 9, next: Node(value: 8))
 sumLists(l1: l1, l2: l2)?.printNodes()
 
 // 0 + 0 = 0 -> (0)
-l1 = Node(id: 0)
-l2 = Node(id: 0)
+l1 = Node(value: 0)
+l2 = Node(value: 0)
 sumLists(l1: l1, l2: l2)?.printNodes()

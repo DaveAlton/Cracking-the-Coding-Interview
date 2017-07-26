@@ -1,11 +1,11 @@
 // Write code to remove duplicates from a linked list
 
 class Node: Equatable {
-    var id: Int
+    var value: Int
     var next: Node?
     
-    init(id: Int, next: Node? = nil) {
-        self.id = id
+    init(value: Int, next: Node? = nil) {
+        self.value = value
         self.next = next
     }
     
@@ -13,7 +13,7 @@ class Node: Equatable {
         var currentNode: Node? = self
         var nodeString = ""
         while currentNode != nil {
-            nodeString += "\(currentNode!.id)"
+            nodeString += "\(currentNode!.value)"
             currentNode = currentNode!.next
             if currentNode == self {
                 break
@@ -34,11 +34,11 @@ func removeDups(head: Node) -> Node? {
     var currentNode: Node? = head
     var currentDeDuplicatedNode: Node?
     while currentNode != nil {
-        if nodesUsed[currentNode!.id] != true {
+        if nodesUsed[currentNode!.value] != true {
             if currentDeDuplicatedNode == nil {
                 deDuplicatedHead = currentNode!
             }
-            nodesUsed[currentNode!.id] = true
+            nodesUsed[currentNode!.value] = true
             currentDeDuplicatedNode?.next = currentNode
             currentDeDuplicatedNode = currentNode
         }
@@ -53,23 +53,23 @@ func removeDups(head: Node) -> Node? {
 
 
 // 0,1,2
-var head = Node(id: 0, next: Node(id: 1, next: Node(id: 1, next: Node(id: 2, next: Node(id: 2)))))
+var head = Node(value: 0, next: Node(value: 1, next: Node(value: 1, next: Node(value: 2, next: Node(value: 2)))))
 removeDups(head: head)?.printNodes()
 
 // 0,1,2
-head = Node(id: 0, next: Node(id: 1, next: Node(id: 2, next: Node(id: 2, next: Node(id: 1)))))
+head = Node(value: 0, next: Node(value: 1, next: Node(value: 2, next: Node(value: 2, next: Node(value: 1)))))
 removeDups(head: head)?.printNodes()
 
 // 0
-head = Node(id: 0, next: Node(id: 0, next: Node(id: 0, next: Node(id: 0, next: Node(id: 0)))))
+head = Node(value: 0, next: Node(value: 0, next: Node(value: 0, next: Node(value: 0, next: Node(value: 0)))))
 removeDups(head: head)?.printNodes()
 
 // 0
-head = Node(id: 0)
+head = Node(value: 0)
 removeDups(head: head)?.printNodes()
 
 // 0
-head = Node(id: 0)
+head = Node(value: 0)
 head.next = head
 removeDups(head: head)?.printNodes()
 
@@ -84,7 +84,7 @@ func removeDupsWithoutBuffer(head: Node) -> Node {
         var runner: Node? = node!.next
         var previous: Node = node!
         while runner != nil {
-            if runner!.id == node!.id {
+            if runner!.value == node!.value {
                 previous.next = runner!.next
             } else {
                 previous = runner!
@@ -103,22 +103,22 @@ func removeDupsWithoutBuffer(head: Node) -> Node {
 }
 
 // 0,1,2
-head = Node(id: 0, next: Node(id: 1, next: Node(id: 1, next: Node(id: 2, next: Node(id: 2)))))
+head = Node(value: 0, next: Node(value: 1, next: Node(value: 1, next: Node(value: 2, next: Node(value: 2)))))
 removeDupsWithoutBuffer(head: head).printNodes()
 
 // 0,1,2
-head = Node(id: 0, next: Node(id: 1, next: Node(id: 2, next: Node(id: 2, next: Node(id: 1)))))
+head = Node(value: 0, next: Node(value: 1, next: Node(value: 2, next: Node(value: 2, next: Node(value: 1)))))
 removeDupsWithoutBuffer(head: head).printNodes()
 
 // 0
-head = Node(id: 0, next: Node(id: 0, next: Node(id: 0, next: Node(id: 0, next: Node(id: 0)))))
+head = Node(value: 0, next: Node(value: 0, next: Node(value: 0, next: Node(value: 0, next: Node(value: 0)))))
 removeDupsWithoutBuffer(head: head).printNodes()
 
 // 0
-head = Node(id: 0)
+head = Node(value: 0)
 removeDupsWithoutBuffer(head: head).printNodes()
 
 // 0
-head = Node(id: 0)
+head = Node(value: 0)
 head.next = head
 removeDupsWithoutBuffer(head: head).printNodes()
