@@ -14,7 +14,7 @@ class IntStack {
     }
     
     private var top: Node?
-    private var minNode: Node?
+    private var minValue: Int?
     
     var isEmpty: Bool {
         return top == nil
@@ -32,10 +32,10 @@ class IntStack {
         let node = Node(value: value, next: top)
         if top == nil {
             top = node
-            minNode = node
+            minValue = value
         } else {
-            if let minValue = minNode?.value, minValue > value {
-                minNode = node
+            if let min = minValue, min > value {
+                minValue = value
             }
         }
         top = node
@@ -57,7 +57,7 @@ class IntStack {
     }
     
     func min() -> Int? {
-        return minNode?.value
+        return minValue
     }
 }
 
