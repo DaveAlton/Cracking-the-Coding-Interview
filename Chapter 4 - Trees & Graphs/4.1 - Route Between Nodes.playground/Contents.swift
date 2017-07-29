@@ -3,9 +3,9 @@
 class Node {
     var value: Int
     var nodes: [Node]
-    init(value: Int, nodes: [Node]) {
+    init(value: Int, nodes: [Node]? = nil) {
         self.value = value
-        self.nodes = nodes
+        self.nodes = nodes ?? []
     }
 }
 
@@ -22,18 +22,50 @@ func node(_ root: Node, contains value: Int) -> Bool {
 //             0
 //            / \
 //           0   0
-//          / \   \
-//         0   1   0
+//          /
+//         0
+//        / \
+//       0   1
 // TRUE
-var graph = Node(value: 0, nodes: [Node(value: 0, nodes: [Node(value: 0, nodes: [Node(value: 0, nodes: []), Node(value: 1, nodes: [])])]), Node(value: 0, nodes: [])])
+var graph = Node(value: 0, nodes:
+    [
+        Node(value: 0, nodes:
+            [
+                Node(value: 0, nodes:
+                    [
+                        Node(value: 0, nodes: []),
+                        Node(value: 1, nodes: [])
+                    ]
+                )
+            ]
+        ),
+        Node(value: 0, nodes: [])
+    ]
+)
 node(graph, contains: 1)
 
 
 //             0
 //            / \
 //           0   0
-//          / \   \
-//         0   0   0
+//          /
+//         0
+//        / \
+//       0   0
 // FALSE
-graph = Node(value: 0, nodes: [Node(value: 0, nodes: [Node(value: 0, nodes: [Node(value: 0, nodes: []), Node(value: 0, nodes: [])])]), Node(value: 0, nodes: [])])
+graph = Node(value: 0, nodes:
+    [
+        Node(value: 0, nodes:
+            [
+                Node(value: 0, nodes:
+                    [
+                        Node(value: 0),
+                        Node(value: 0)
+                    ]
+                )
+            ]
+        ),
+        Node(value: 0)
+    ]
+)
 node(graph, contains: 1)
