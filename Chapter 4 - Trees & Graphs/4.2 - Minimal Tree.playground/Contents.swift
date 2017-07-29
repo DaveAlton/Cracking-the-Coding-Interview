@@ -4,21 +4,21 @@
 class Node {
     var value: Int
     var nodes: [Node]
-    init(value: Int, nodes: [Node]) {
+    init(value: Int, nodes: [Node]? = nil) {
         self.value = value
-        self.nodes = nodes
+        self.nodes = nodes ?? []
     }
 }
 
 func createBinaryTree(values: [Int]) -> Node? {
     guard values.count > 0 else { return nil }
     if values.count == 1 {
-        return Node(value: values.first!, nodes: [])
+        return Node(value: values.first!)
     } else if values.count <= 3 {
-        let root = Node(value: values[1], nodes: [])
+        let root = Node(value: values[1])
         for value in values.enumerated() {
             if value.offset != 2 {
-                root.nodes.append(Node(value: value.element, nodes: []))
+                root.nodes.append(Node(value: value.element))
             }
         }
         return root
